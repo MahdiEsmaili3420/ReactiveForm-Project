@@ -1,0 +1,128 @@
+<!-- <div>
+
+    
+    <h1>
+        ثبت اطلاعات کاربر
+    </h1>
+</div>
+<div style="display: flex;justify-content: space-evenly;">
+    <div>
+        نام خود را وارد کنید :
+    </div>
+    <div>
+        <input type="text" [(ngModel)]="newUser.firstName">
+    </div>
+    <div>
+        نام خوانوادگی خود را وارد کنید :
+    </div>
+    <div>
+        <input type="text" [(ngModel)]="newUser.lastName">
+    </div>
+    <div>
+        سن خود را وارد کنید :
+    </div>
+    <div>
+        <input type="text" [(ngModel)]="newUser.Age">
+    </div>
+    <div>
+        شغل خود را وارد کنید :
+    </div>
+    <div>
+        <input type="text" [(ngModel)]="newUser.Job">
+    </div>
+
+</div>
+
+<div style="margin-top: 20px;">
+    <button type="button" (click)="addUsers()">ثبت اطلاعات</button>
+</div>
+
+
+
+
+<table>
+
+    <tr class="table__headeer--tr">
+        <th>نام</th>
+        <th>نام خوانوادگی</th>
+        <th>سن</th>
+        <th>شغل</th>
+        <th>userid</th>
+    </tr>
+
+
+    @for(item of Users;track item;let i = $index){
+  
+
+    <tr (click)="selectedUser(item.id)" [id]="item.id" [ngClass]="{'table__data--tr' : item.id === selectedUsser }">
+        <td> {{i + 1 }}</td>
+        <td>{{item.firstName}}</td>
+        <td> {{item.lastName}}</td>
+        <td>{{item.Age}}</td>
+        <td>{{item.Job}}</td>
+        <td>{{item.id}}</td>
+        @if(isEditBox == true && item.id === selectedUsser){
+        <div class="editbox__containr">
+            <div class="edit__section" (click)="editUser(item.id)">
+                ویرایش
+            </div>
+            <div class="delete__section" (click)="deleteUser(item.id)">
+                حذف
+            </div>
+        </div>
+        }
+
+        @if(opneditsction === true){
+            <input type="text" [(ngModel)]="editedtext">
+        }
+
+
+
+    </tr>
+    }
+
+</table> -->
+
+
+<div>
+    <h2 style="background-color: aquamarine;padding: 12px;">
+        برانامه ثبت پروژه
+    </h2>
+
+    <form [formGroup]="projectForm" (ngSubmit)="onProjectFormSubmit()">
+        <div>
+            <label for="">نام بروژه را وارد کنید</label>
+            <input type="text" formControlName="porjectName" [(ngModel)]="projectForm.value.porjectName">
+        </div>
+        <div>
+            <label for="">توضیحات بروژه را وارد کنید</label>
+            <input type="text" formControlName="projectDiscription">
+        </div>
+        <div>
+            <label for="">تاریخ شروع بروژه را وارد کنید</label>
+            <input type="text" formControlName="startDate">
+        </div>
+
+        <div formGroupName="teamMembers">
+            <div formArrayName="userNames">
+                @for(username of UserNames.controls ;track username;let i = $index){
+                    <label for=""> {{i + 1}}نام عضو</label>
+                    <input type="text" [formControlName]="i">
+                }
+            </div>
+
+            <div formArrayName="userNames">
+                @for(username of UserNames.controls ;track username;let i = $index){
+                    <label for="">نام عضو</label>
+                    <input type="text" [formControlName]="i">
+                }
+            </div>
+        </div>
+
+        <button (click)="addUserName()">افزودن عضو جدید</button>
+        <button type="submit">ارسال</button>
+
+
+    </form>
+
+</div>
