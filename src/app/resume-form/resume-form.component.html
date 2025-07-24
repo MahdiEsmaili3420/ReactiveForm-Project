@@ -1,0 +1,150 @@
+<div class="resume-builder-container">
+  <div class="builder-header">
+    <h1><i class="fas fa-file-alt"></i> رزومه‌ساز حرفه‌ای</h1>
+    <button class="download-btn" type="submit">
+      <i class="fas fa-download"></i> دانلود رزومه
+    </button>
+  </div>
+
+  <form [formGroup]="resumeForm" action="" (ngSubmit)="onsubmit()">
+    <div class="form-container">
+      <form formGroupName="personalinformation">
+        <h2 class="section-title">
+          <i class="fas fa-user"></i> اطلاعات شخصی
+        </h2>
+
+        <div class="form-group">
+          <div style="display: flex;gap: 10px;">
+            <label for="fullName">نام کامل</label>
+            <span class="required-star">*</span>
+          </div>
+
+          <input type="text" id="fullName" placeholder="نام و نام خانوادگی" formControlName="fullName">
+          @if(fullname?.invalid && fullname?.touched){
+          <div style="color: red;">
+            پرکردن این فیلد الزامی است
+          </div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="email">ایمیل</label>
+          <input type="email" id="email" placeholder="example@example.com" formControlName="email">
+          @if(email?.invalid){
+          <div style="color: red;">
+            ایمیل صحیح نمیباشد
+          </div>
+          }
+        </div>
+
+        <div class="form-group">
+          <div style="display: flex;gap: 10px;">
+            <label for="phone">شماره تماس</label>
+            <span class="required-star">*</span>
+          </div>
+          <input type="tel" id="phone" placeholder="09123456789" formControlName="phone">
+        </div>
+
+        <div class="form-group">
+          <label for="address">آدرس (اختیاری)</label>
+          <input type="text" id="address" placeholder="آدرس محل سکونت" formControlName="address">
+        </div>
+      </form>
+      <form formGroupName="socialmedia">
+        <div class="form-group">
+          <label>شبکه‌های اجتماعی</label>
+          <div class="social-links">
+            <div class="social-link-item">
+              <input type="text" placeholder="لینکدین (اختیاری)" class="social-input" formControlName="linkedin">
+            </div>
+            <div class="social-link-item">
+              <input type="text" placeholder="GitHub (اختیاری)" class="social-input" formControlName="github">
+            </div>
+            <button class="add-btn">
+              <i class="fas fa-plus"></i> افزودن شبکه اجتماعی
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="form-container">
+      <h2 class="section-title">
+        <i class="fas fa-graduation-cap"></i> تحصیلات
+      </h2>
+      <form formGroupName="educations">
+        <div class="education-list">
+          <div class="education-item">
+            <div class="form-group">
+              <div style="display: flex;gap: 10px;">
+                <label>مدرک تحصیلی</label>
+                <span class="required-star">*</span>
+              </div>
+              <select formControlName="educationqoalification">
+                <option value="">انتخاب کنید</option>
+                <option value="diploma">دیپلم</option>
+                <option value="bachelor">لیسانس</option>
+                <option value="master">فوق لیسانس</option>
+                <option value="phd">دکترا</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <div style="display: flex;gap: 10px;">
+                <label>رشته تحصیلی</label>
+                <span class="required-star">*</span>
+              </div>
+              <input type="text" placeholder="مثلاً مهندسی نرم‌افزار" formControlName="feildofstudy">
+            </div>
+
+            <div class="form-group">
+              <label>نام دانشگاه/موسسه</label>
+              <input type="text" placeholder="نام دانشگاه" formControlName="companyname">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group" style="flex: 1;">
+                <label>سال فارغ‌التحصیلی</label>
+                <input type="text" placeholder="1402" formControlName="graduation">
+              </div>
+              <div class="form-group" style="flex: 1; margin-right: 1rem;">
+                <label>معدل (اختیاری)</label>
+                <input type="text" placeholder="17.5" formControlName="gpa">
+              </div>
+            </div>
+
+            <button class="remove-btn">
+              <i class="fas fa-trash"></i> حذف
+            </button>
+          </div>
+        </div>
+
+        <button class="add-btn" type="submit">
+          <i class="fas fa-plus"></i> افزودن مدرک تحصیلی
+        </button>
+      </form>
+    </div>
+
+    <!-- <div class="builder-content">
+  
+      <div class="form-section">
+        <app-personal-info></app-personal-info>
+        <app-education></app-education>
+        <app-skills></app-skills>
+        <app-work-experience></app-work-experience>
+        <app-projects></app-projects>
+      </div>
+  
+      <div class="preview-section">
+        <app-resume-preview></app-resume-preview>
+      </div>
+    </div> -->
+  </form>
+</div>
+
+
+@if(isEndInformation == false){
+    {{fullname}},
+    <div>ایمیل</div>
+      {{email}}
+}
