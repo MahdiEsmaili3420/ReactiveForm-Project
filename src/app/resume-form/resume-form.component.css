@@ -1,15 +1,14 @@
-
-
 .resume-builder-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   padding: 1rem;
+  position: relative;
 }
 
 .builder-header {
-    position: sticky;
-    top: 1px;
+  position: sticky;
+  top: 1px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -88,7 +87,9 @@
     color: var(--text-color);
   }
 
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #ddd;
@@ -110,9 +111,10 @@
 }
 
 
-.required-star{
+.required-star {
   color: red;
 }
+
 .section-title {
   display: flex;
   align-items: center;
@@ -175,44 +177,78 @@
     flex-direction: column;
   }
 
-  .form-section, .preview-section {
+  .form-section,
+  .preview-section {
     max-height: none;
   }
 }
 
 /* personal-info.component.scss */
 .social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .social-link-item {
-    display: flex;
-    align-items: center;
-  }
-  
-  .social-input {
-    flex: 1;
-    margin-right: 0.5rem;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
-  /* education.component.scss */
+.social-link-item {
+  display: flex;
+  align-items: center;
+}
+
+.social-input {
+  flex: 1;
+  margin-right: 0.5rem;
+}
+
+/* education.component.scss */
 .education-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .education-item {
-    background-color: #f8f9fa;
-    padding: 1.5rem;
-    border-radius: var(--border-radius);
-    position: relative;
-  }
-  
-  .form-row {
-    display: flex;
-    gap: 1rem;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.education-item {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  position: relative;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0000004d;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__content {
+  background-color: white;
+  padding: 0px;
+  border-radius: 0px 0px 8px 8px;
+  overflow-x: auto;
+  overflow-y: auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1000;
+  min-height: auto;
+  max-height: 540px;
+  animation: backdropFadeIn 0.2s ease-out forwards;
+}
+
+.modal__header{
+  background-color: red;
+  width: 80%;
+}

@@ -1,12 +1,31 @@
+
+<div style="position: relative;">
+
+  @if(resumeForm.invalid){
+    <div style="position: fixed;background-color: red;padding: 30px;color: #ffffff;top: 10px;z-index: 20;">
+      {{errrormessage }}
+      </div>
+  }
+
+  @else {
+    <div style="position: fixed;background-color: rgb(0, 255, 30);padding: 30px;color: #ffffff;top: 10px;z-index: 20;">
+      {{ confrimMessage}}
+      </div>
+  }
+     
+  
+
+
+</div>
 <div class="resume-builder-container">
   <div class="builder-header">
     <h1><i class="fas fa-file-alt"></i> رزومه‌ساز حرفه‌ای</h1>
-    <button class="download-btn" type="submit">
+    <button class="download-btn" (click)="openModal()">
       <i class="fas fa-download"></i> دانلود رزومه
     </button>
   </div>
 
-  <form [formGroup]="resumeForm" action="" (ngSubmit)="onsubmit()">
+  <form [formGroup]="resumeForm" (ngSubmit)="onsubmit()">
     <div class="form-container">
       <form formGroupName="personalinformation">
         <h2 class="section-title">
@@ -42,7 +61,7 @@
             <label for="phone">شماره تماس</label>
             <span class="required-star">*</span>
           </div>
-          <input type="tel" id="phone" placeholder="09123456789" formControlName="phone">
+          <input pattern="09.*" type="tel" id="phone" placeholder="09123456789" formControlName="phone">
         </div>
 
         <div class="form-group">
@@ -119,9 +138,7 @@
           </div>
         </div>
 
-        <button class="add-btn" type="submit">
-          <i class="fas fa-plus"></i> افزودن مدرک تحصیلی
-        </button>
+
       </form>
     </div>
 
@@ -139,12 +156,35 @@
         <app-resume-preview></app-resume-preview>
       </div>
     </div> -->
+    <button class="add-btn" type="submit">
+      <i class="fas fa-plus"></i> افزودن مدرک تحصیلی
+    </button>
   </form>
 </div>
 
 
 @if(isEndInformation == false){
-    {{fullname}},
-    <div>ایمیل</div>
-      {{email}}
+{{fullname}},
+<div>ایمیل</div>
+{{email}}
+}
+
+
+@if(isModal == true){
+<div class="modal">
+  <div class="modal__content">
+    <div class="modal__header">
+      <div class="modal__personal--info">
+        رزومه آقای{{fullname?.value}}
+      </div>
+
+      <div>نام : {{fullname?.value}}</div>
+      <div>ایمیل: {{email?.value}}</div>
+      <div>تلفن : {{phone?.value}}</div>
+      <div>نام : {{fullname?.value}}</div>
+      <div>نام : {{fullname?.value}}</div>
+
+    </div>
+  </div>
+</div>
 }

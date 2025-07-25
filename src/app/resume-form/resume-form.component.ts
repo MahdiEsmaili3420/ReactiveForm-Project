@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule, FormArray, FormGroup, FormBuilder, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 
 
+
 @Component({
   selector: 'app-resume-form',
   standalone: true,
@@ -9,9 +10,17 @@ import { FormsModule, FormArray, FormGroup, FormBuilder, FormControl, Validators
   templateUrl: './resume-form.component.html',
   styleUrl: './resume-form.component.css'
 })
+
+
+
 export class ResumeFormComponent {
 
+
   isEndInformation: boolean = false;
+  isModal: boolean = false;
+  errrormessage: string = '';
+
+  confrimMessage : string = ''
 
   resumeForm = new FormGroup({
     personalinformation: new FormGroup({
@@ -46,11 +55,44 @@ export class ResumeFormComponent {
     return this.resumeForm.get('personalinformation.fullName');
   }
 
+  get phone() {
+    return this.resumeForm.get('personalinformation.phone')
+  }
+
 
 
 
   onsubmit() {
-    console.log(this.resumeForm.value.personalinformation);
+
+    // if(this.phone?.valid){
+    //   console.log('فرمت صحیح است')
+    // }
+    // else{
+    //   console.log('فرمت صحیح نمیباشد !');
+    // }
+
+    if (this.resumeForm.invalid) {
+      this.errrormessage = 'تمام موارد را کامل کنید !'
+    }
+
+    else{
+      this.confrimMessage = 'اطلاعات با موفقیت ثبت شد'
+    }
+
+    console.log(this.resumeForm.valid);
+
+  }
+
+  openModal() {
+    // if (this.resumeForm.valid) {
+    this.isModal = true;
+    // }
+
+    // else {
+    //   this.isModal = false;
+    // }
+
+
   }
 
 
